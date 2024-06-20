@@ -1,5 +1,5 @@
 import { Col, Row, Card, Form, Input, Button, message } from 'antd';
-import logo from '../assets/IdPhoto.jpg'
+import logo from '../assets/powerpedal.png'
 import { useNavigate } from 'react-router-dom';
 
 export default function LogOut(){
@@ -18,7 +18,7 @@ export default function LogOut(){
             }} 
             >
              <img src={logo} style={{
-                width: '100px', 
+                width: '230px', 
                 display:'block',
                 borderRadius:'15px',
                 margin: '40px auto'
