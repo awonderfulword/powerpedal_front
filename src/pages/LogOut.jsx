@@ -34,7 +34,7 @@ export default function LogOut(){
                     onFinish={(n)=>{
                         console.log(n)
                         message.success('登录成功')
-                        navigate('/admin/student-type')
+                        navigate('/admin/student_menu/student_type')
                     }}
                     
                     >

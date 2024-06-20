@@ -23,6 +23,7 @@ const MyUpLoad = () => {
   const [loading, setLoading] = useState(false);
   //上传完成之后的数据
   const [imageUrl, setImageUrl] = useState();
+
   //上传过程中改变的时候
   const handleChange = (info) => {
     //正在上传中
@@ -65,27 +66,6 @@ const MyUpLoad = () => {
         className="avatar-uploader"
         showUploadList={false}
         //上传的后端的接口地址
-        action="https://660d2bd96ddfa2943b33731c.mockapi.io/api/upload"
-        beforeUpload={beforeUpload}
-        onChange={handleChange}
-      >
-        {imageUrl ? (
-          <img
-            src={imageUrl}
-            alt="avatar"
-            style={{
-              width: '100%',
-            }}
-          />
-        ) : (
-          uploadButton
-        )}
-      </Upload>
-      <Upload
-        name="avatar"
-        listType="picture-circle"
-        className="avatar-uploader"
-        showUploadList={false}
         action="https://660d2bd96ddfa2943b33731c.mockapi.io/api/upload"
         beforeUpload={beforeUpload}
         onChange={handleChange}

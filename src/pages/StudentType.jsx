@@ -2,19 +2,32 @@ import { Card, Button, Form, Input, Table, Modal, message } from "antd"
 import { PlusOutlined, SearchOutlined} from '@ant-design/icons';
 import { useState } from "react";
 import MyUpLoad from "../components/MyUpLoad";
+import axios from "axios";
+import { get } from "../../utils/request";
+
 
 
 export default function StudentType(){
 
     const [isShow, setIsShow] = useState(false)
     //[]包着变量的写法是ES6的数组解构赋值
-    const [myForm] = Form.useForm()
-    /*
+      /*
      从数组中提取值，按照对应的位置， 对变量赋值
      let [a, ...x] = ['aaa', 'bbb', 'ccc', 'ddd']
      console.log(a,x)   //打印结果：aaa 和  ['bbb', 'ccc', 'ddd']
     
     */
+    const [myForm] = Form.useForm()
+    const [tableData, setTableData] = useState()
+
+  
+
+     //跨域
+    //  axios.get('/api/getData').then(_d => console.log(_d.data))
+    get('/getData').then(_d => {
+        console.log(_d.data)
+        setTableData(_d.data)
+    })
 
     return(
         <div>
@@ -44,20 +57,31 @@ export default function StudentType(){
                 </Form.Item>
             </Form>
 
-            <Table columns={[{
-                title:'序号',
-                width: 80
-            }, {
-                title: '姓名'
-            },{
-                title: '照片',
-                width: 120
-            },{
-                title: '成绩'
-            },{
-                title: '操作',
-                width: 80
-            }]}>
+            <Table 
+                dataSource={tableData}
+                columns={[{
+                    title:'序号',
+                    width: 80,
+                    render (n,m,k){
+                        return <span>{k +1}</span>
+                    }
+                }, {
+                    title: '姓名',
+                    dataIndex:'name'
+                },{
+                    title: '照片',
+                    width: 120,
+                    render (n,m,k){
+                        return <img className="listImg" src={n.img} />
+                    }
+                },{
+                    title: '简介',
+                    dataIndex:'desc'
+                },{
+                    title: '操作',
+                    width: 80
+                }]}
+            >
 
             </Table>
 
@@ -94,7 +118,9 @@ export default function StudentType(){
                     <Input placeholder="请输入你的姓名" />
                 </Form.Item>
                 <Form.Item label='照片'>
+
                     <MyUpLoad />
+
                 </Form.Item>
                 <Form.Item label='简介' name='desc'>
                     <Input.TextArea placeholder="请输入介绍" />
