@@ -10,7 +10,7 @@ import LogOut from './pages/LogOut.jsx'
 ReactDOM.createRoot(document.getElementById('root')).render(
   <Router>
     <Routes>
-      <Route path='/admin/*' element={ <App />} />
+      <Route path='/management/*' element={ <App />} />
       <Route path='/' element={ <LogOut />} />
      
     </Routes>

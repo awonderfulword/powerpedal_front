@@ -15,11 +15,11 @@ const { Header, Sider, Content } = Layout;
 const items = [
   {
     key: 'userCenter',
-    label: (<a>个人中心</a>)
+    label: (<a>Mes données</a>)
   },
   {
     key: 'logOut',
-    label: (<a>退出</a>)
+    label: (<a>Me déconnecter</a>)
   },
   
 ];
@@ -27,39 +27,69 @@ const items = [
 //side 的数据
 const itemsMenuData = [
   {
-    key: '/admin/student_menu',
+    key: '/management/info',
     icon: <UserOutlined />,
-    label: '学生管理',
+    label: 'Informations',
     children:[{
-      label: '学生分类',
-      key: '/admin/student_menu/student_type'
+      label: 'Fournisseurs',
+      key: '/management/info/supplier'
     },
     {
-      label: '学生列表',
-      key: '/admin/student_menu/student_list'
+      label: 'Clients',
+      key: '/management/info/client'
+    },
+    {
+      label: 'Produits',
+      key: '/management/info/product'
+    }
+  ]
+  },
+  {
+    key: '/management/procurement',
+    icon: <FileSearchOutlined />,
+    label: 'Gestion des achats',
+    children:[{
+      label: 'Achats',
+      key: '/management/procurement/purchase'
+    },
+    {
+      label: 'Retours',
+      key: '/management/procurement/purchaseReturn'
     },
   ]
   },
   {
-    key: '/admin/class_menu',
+    key: '/management/sales',
     icon: <FileSearchOutlined />,
-    label: '班级管理',
+    label: 'Gestion des ventes',
     children:[{
-      label: '班级分类',
-      key: '/admin/class_menu/class_type'
+      label: 'Ventes',
+      key: '/management/sales/sales'
     },
     {
-      label: '班级列表',
-      key: '/admin/class_menu/class_list'
+      label: 'Retours de ventes',
+      key: '/management/sales/sales_returns'
     },
-  ]
+  ] 
   },
   {
-    key: '/admin/course_menu',
+    key: '/management/admin',
     icon: <FileSearchOutlined />,
-    label: '课程管理',
-  
-  }
+    label: 'Administration',
+    children:[{
+      label: 'Administrateur',
+      key: '/management/admin/administrator'
+    },
+    {
+      label: 'Employés',
+      key: '/management/admin/employee'
+    },
+    {
+      label: 'Départements',
+      key: '/management/admin/departement'
+    }
+  ] 
+  },
 ]
 
 //生成面包屑导航
@@ -69,25 +99,12 @@ const createNavFn =(key)=>{
 
   const demoFn = (arr) =>{
     arr.forEach(n =>{
-      // console.log(n)
-      //在函数调用/数组构造时, 将数组表达式或者string在语法层面展开
-      //...扩展运算符， 对多层嵌套数组、对象、无能为力
-
-      //例如
-      //数组， var number = [1,2,3,4,5,6]; console.log(...number) //1 2 3 4 5 6
-      //对象 var man = {name: 'chuichui', height: 176};
-      //console.log({...man}) //{name: 'chuichui', height:176}
-      //此行代码中，children, info 都是变量名
-
-      //n中有children子节点时，为嵌套，把值给到变量children
-      //n中没有children时，children为undefined
-      //无论n中有没有children子节点, n中的键值对节点，都以自己自带的键值名，赋值给info
-       
+   
       const{children, ...info} = n
       // console.log(children)
       arrObj.push(info)
 
-      //如果有子节点
+    
       if(children){
         demoFn(children)
       }
@@ -100,7 +117,7 @@ const createNavFn =(key)=>{
   const temp = arrObj.filter(m => key.includes(m.key))
  // console.log(temp)
  if(temp.length >0 ){
-  return [{label:'首页', key:'/admin/student_menu/student_type'},...temp]
+  return [{label:'Accueil', key:'/admin/student_menu/student_type'},...temp]
  }else{
   return[]
  }
@@ -198,7 +215,7 @@ const MyLayout = ({children}) => {
               height: 64,
             }}
           />
-          <span className='titleDiv'>学生管理系统</span>
+          <span className='titleDiv'>Power Pedal</span>
           <Dropdown menu={{items, onClick }} >
                 <a onClick={(e) => e.preventDefault()} style={{float:'right', margin:'0 30px 0 0'}}>
                   {<UserOutlined style={{fontSize:'30px'}} />} 

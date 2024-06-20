@@ -24,7 +24,7 @@ export default function LogOut(){
                 margin: '40px auto'
              }}/>   
 
-             <Card title='管理系统' >
+             <Card title='Bienvenue sur votre espace personnel' >
                     <Form 
                         labelCol={{
                              md: {
@@ -33,29 +33,29 @@ export default function LogOut(){
                     }}
                     onFinish={(n)=>{
                         console.log(n)
-                        message.success('登录成功')
-                        navigate('/admin/student_menu/student_type')
+                        message.success('Bienvenue')
+                        navigate('/management/info/product')
                     }}
                     
                     >
-                        <Form.Item label='用户名' name='userName' rules={[
+                        <Form.Item label='Identifiant' name='userName' rules={[
                             {
                                 required: true,
-                                message: '请输入用户名'
+                                message: 'Vous devez renseigner votre identifiant'
                             }]}>
-                            <Input placeholder='请输入用户名'/>
+                            <Input placeholder='Votre identifiant'/>
                         </Form.Item>
-                        <Form.Item label='密码' name='password' rules={[
+                        <Form.Item label='mot de passe' name='password' rules={[
                             {
                                 required: true,
-                                message: '请输入密码'
+                                message: 'Vous devez renseigner votre mot de passe'
                             }]}>
-                        <Input.Password placeholder='请输入密码'/>
+                        <Input.Password placeholder='Votre mot de passe'/>
                         </Form.Item>
                         <Form.Item>
                             <Button htmlType='submit' type='primary' style={{margin:'0 auto', display: 'block'}}
                             >
-                             登录
+                             SE CONNECTER
                             </Button>
                         </Form.Item>
                     </Form>

@@ -7,7 +7,7 @@ import { get } from "../../utils/request";
 
 
 
-export default function StudentType(){
+export default function Supplier(){
 
     const [isShow, setIsShow] = useState(false)
     //[]包着变量的写法是ES6的数组解构赋值
@@ -32,7 +32,7 @@ export default function StudentType(){
     return(
         <div>
              <Card 
-        title="学生分类"
+        title="Fournisseur"
         extra={
             <div>
                 <Button 
@@ -49,10 +49,10 @@ export default function StudentType(){
         }
         >
             <Form layout="inline">
-                <Form.Item label="姓名">
-                    <Input placeholder="请输入要查询的姓名" />
+                <Form.Item label="Fournisseur">
+                    <Input placeholder="Le nom du fournisseur" />
                 </Form.Item>
-                <Form.Item label="姓名">
+                <Form.Item >
                     <Button type="primary" icon={<SearchOutlined />}></Button>
                 </Form.Item>
             </Form>
@@ -60,13 +60,13 @@ export default function StudentType(){
             <Table 
                 dataSource={tableData}
                 columns={[{
-                    title:'序号',
+                    title:'N° fournisseur',
                     width: 80,
                     render (n,m,k){
                         return <span>{k +1}</span>
                     }
                 }, {
-                    title: '姓名',
+                    title: 'Raison Sociale',
                     dataIndex:'name'
                 },{
                     title: '照片',
@@ -75,10 +75,10 @@ export default function StudentType(){
                         return <img className="listImg" src={n.img} />
                     }
                 },{
-                    title: '简介',
+                    title: 'Adresses',
                     dataIndex:'desc'
                 },{
-                    title: '操作',
+                    title: 'Téléphone',
                     width: 80
                 }]}
             >
@@ -88,12 +88,11 @@ export default function StudentType(){
         </Card>
 
         <Modal
-            title="编辑输入框"
+            title="Ajouter Fournisseur"
             open={isShow}
             maskClosable={false}
             onCancel={()=> setIsShow(false)}
             onOk={()=>{
-                // message.success('添加成功')
                 myForm.submit()
             }}
         >
@@ -102,28 +101,29 @@ export default function StudentType(){
                 form={myForm}
                 labelCol={{span:3}}
                 onFinish={(n)=>{
-                    message.success('添加成功')
+                    message.success('Bien enregistré')
                     console.log(n)
 
                 }}
             >
                 <Form.Item 
-                label='姓名' 
+                label='N° Fournisseur' 
                 name='name' 
                 rules={[{
                     required:true,
-                    message:'请输入姓名'
+                    message:'Renseignez le N° de fournisseur'
 
                 }]}>
-                    <Input placeholder="请输入你的姓名" />
+                    <Input placeholder="N° de fournisseur" />
+
                 </Form.Item>
                 <Form.Item label='照片'>
 
                     <MyUpLoad />
 
                 </Form.Item>
-                <Form.Item label='简介' name='desc'>
-                    <Input.TextArea placeholder="请输入介绍" />
+                <Form.Item label='description' name='desc'>
+                    <Input.TextArea placeholder="les descriptions" />
                 </Form.Item>
             </Form>
 
